@@ -17,11 +17,22 @@ namespace API_Yandex_WORK
                 ConditionRespToConst[x.Condition]))
                 .ForMember(x => x.WindDirection, xproj => xproj.MapFrom(x => 
                 WindDirectionRespTool[x.WindDirection]));
+
+            AutoMapper.Mapper.CreateMap<Day, FactProjection>()
+                .ForMember(x => x.Condition, xproj => xproj.MapFrom(x =>
+                ConditionRespToConst[x.Condition]))
+                .ForMember(x => x.WindDirection, xproj => xproj.MapFrom(x =>
+                WindDirectionRespTool[x.WindDirection]));
         }
 
         public static FactProjection ToFactProjection(this Fact item)
         {
             return Mapper.Map<Fact, FactProjection>(item);
+        }
+
+        public static FactProjection ToForecastsProjection(this Day item)
+        {
+            return Mapper.Map<Day, FactProjection>(item);
         }
 
         public static Dictionary<PrecType, string> PrecTypeView { get; } = new Dictionary<PrecType, string>
@@ -109,13 +120,13 @@ namespace API_Yandex_WORK
 
         public static Dictionary<WindDirection, string> WindDirectionView { get; } = new Dictionary<WindDirection, string>
         {
-            { WindDirection.NorthWest, "северо-западное" },
+            { WindDirection.NorthWest, "северо - западное" },
             { WindDirection.North, "северное" },
-            { WindDirection.NorthEast, "северо-восточное" },
+            { WindDirection.NorthEast, "северо - восточное" },
             { WindDirection.East, "восточное" },
-            { WindDirection.SouthEast, "юго-восточное" },
+            { WindDirection.SouthEast, "юго - восточное" },
             { WindDirection.South, "южное" },
-            { WindDirection.SouthWest, "юго-западное" },
+            { WindDirection.SouthWest, "юго - западное" },
             { WindDirection.West, "западное" },
             { WindDirection.Calm, "штиль" }
         };

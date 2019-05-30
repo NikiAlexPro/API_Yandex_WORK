@@ -44,7 +44,7 @@ namespace API_Yandex_WORK
         }
         private void button_search_Click(object sender, EventArgs e)
         {
-            string res = textBox1.Text;
+            string res = richTextBox1.Text;
             labelNameCity.Text = res;
             //Запрос Яндекс.Геокодер
             HttpWebRequest requestGeo = (HttpWebRequest)WebRequest.Create($"https://geocode-maps.yandex.ru/1.x/?apikey=737dd3bf-9479-4896-9e7f-85b5303c8f75&format=json&geocode={res}&results=1");
@@ -91,27 +91,47 @@ namespace API_Yandex_WORK
                     //JNDeserialize jnDeserialize = JsonConvert.DeserializeObject<JNDeserialize>(n);
                     //long result = jnDeserialize.now;
                     var fact = JsonConvert.DeserializeObject<WeatherServiceResponce>(n);
+                    var forecasts = JsonConvert.DeserializeObject<ForecastsContainer>(n);
                     var proj = fact.CurrentWeather.ToFactProjection();
+                    var projforecasts = forecasts.Forecasts[1].Parts.Day.ToForecastsProjection();
+                    var projforecastsAf = forecasts.Forecasts[2].Parts.Day.ToForecastsProjection();
                     weathers.Add(proj);
+                    weathers.Add(projforecasts);
+                    weathers.Add(projforecastsAf);
+                    
                     //var info = JsonConvert.DeserializeObject<WeatherServiceResponce>(n);
+                    //labelWeatherNow
                     labelTemperature.Text = "Температура: " + fact.CurrentWeather.Temperature + " °C";
                     labelWindSpeed.Text = "Скорость ветра: " + fact.CurrentWeather.WindSpeed + " м/с";
                     labelPressureMm.Text = "Давление: " + fact.CurrentWeather.PressureMm + " мм рт.ст.";
                     labelHumidity.Text = "Влажность воздуха: " + fact.CurrentWeather.Humidity + " %";
-                    labelPrecType.Text = $"Тип осадков: {PrecTypeView[proj.PrecType]}";
-                    labelPrecStrength.Text = $"Сила осадков: {PrecStrengthViev[proj.PrecStrength]}";
+                    //labelPrecType.Text = $"Тип осадков: {PrecTypeView[proj.PrecType]}";
+                    //labelPrecStrength.Text = $"Сила осадков: {PrecStrengthViev[proj.PrecStrength]}";
                     labelCloudness.Text = $"Облачность: {CloudnessView[proj.Cloudness]}";
                     labelCondition.Text = $"Погодное описание: {ConditionView[proj.Condition]}";
                     labelWindDirection.Text = $"Направление ветра: {WindDirectionView[proj.WindDirection]}";
                     labelNameCity.Text = "Местоположение: " + res;
-                    //Console.WriteLine($"{result}");
-                    //Console.WriteLine(Webstream.ReadToEnd());
-                    //pictureBox1.Image
                     string IconNow = fact.CurrentWeather.Icon;
                     webBrowserNow.Navigate($"https://yastatic.net/weather/i/icons/blueye/color/svg/{IconNow}.svg");
-                    //webBrowser2.Refresh();
                     
-                    //pictureBox1.ImageLocation = "https://cdn.dribbble.com/users/27990/screenshots/1983809/weather_teaser.png";
+                    //labelWeatherTommorow
+                    labelTemperatureTomw.Text = "Температура: " + forecasts.Forecasts[1].Parts.Day.Temperature + " °C";
+                    labelWindSpeedTomw.Text = "Скорость ветра: " + forecasts.Forecasts[1].Parts.Day.WindSpeed + " м/с";
+                    labelPressureMmTomw.Text = "Давление: " + forecasts.Forecasts[1].Parts.Day.PressureMm + " мм рт.ст.";
+                    labelConditionTomw.Text = $"Погодное описание: {ConditionView[projforecasts.Condition]}";
+                    labelWindDirectionTomw.Text = $"Направление ветра: {WindDirectionView[projforecasts.WindDirection]}";
+                    string IconTommorow = forecasts.Forecasts[1].Parts.Day.Icon;
+                    webBrowserTommorow.Navigate($"https://yastatic.net/weather/i/icons/blueye/color/svg/{IconTommorow}.svg");
+
+                    //labelWeatherAfterTomorrow
+                    labelTemperatureAfTomw.Text = "Температура: " + forecasts.Forecasts[2].Parts.Day.Temperature + " °C";
+                    labelWindSpeedAfTomw.Text = "Скорость ветра: " + forecasts.Forecasts[2].Parts.Day.WindSpeed + " м/с";
+                    labelPressureMmAfTomw.Text = "Давление: " + forecasts.Forecasts[2].Parts.Day.PressureMm + " мм рт.ст.";
+                    labelConditionAfTomw.Text = $"Погодное описание: {ConditionView[projforecastsAf.Condition]}";
+                    labelWindDirectionAfTomw.Text = $"Направление ветра: {WindDirectionView[projforecastsAf.WindDirection]}";
+                    string IconAfTommorow = forecasts.Forecasts[2].Parts.Day.Icon;
+                    webBrowserAfTommorow.Navigate($"https://yastatic.net/weather/i/icons/blueye/color/svg/{IconAfTommorow}.svg");
+
 
                 }
             }
@@ -121,6 +141,11 @@ namespace API_Yandex_WORK
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

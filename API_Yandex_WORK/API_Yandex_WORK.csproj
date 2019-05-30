@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CommonConverter.cs" />
     <Compile Include="Fact.cs" />
+    <Compile Include="Forecasts.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
