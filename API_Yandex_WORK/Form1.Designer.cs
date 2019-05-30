@@ -30,7 +30,6 @@
         {
             this.button_search = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelTemperature = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelNameCity = new System.Windows.Forms.Label();
@@ -42,7 +41,8 @@
             this.labelHumidity = new System.Windows.Forms.Label();
             this.labelPressureMm = new System.Windows.Forms.Label();
             this.labelWindSpeed = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBoxTommorow = new System.Windows.Forms.GroupBox();
+            this.webBrowserNow = new System.Windows.Forms.WebBrowser();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,16 +63,6 @@
             this.textBox1.Size = new System.Drawing.Size(237, 20);
             this.textBox1.TabIndex = 1;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(6, 38);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(195, 136);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // labelTemperature
             // 
             this.labelTemperature.AutoSize = true;
@@ -84,9 +74,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.webBrowserNow);
             this.groupBox1.Controls.Add(this.labelNameCity);
             this.groupBox1.Controls.Add(this.labelWindDirection);
-            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.labelCondition);
             this.groupBox1.Controls.Add(this.labelCloudness);
             this.groupBox1.Controls.Add(this.labelPrecStrength);
@@ -183,11 +173,30 @@
             this.labelWindSpeed.TabIndex = 4;
             this.labelWindSpeed.Text = "Скорость ветра: ";
             // 
+            // groupBoxTommorow
+            // 
+            this.groupBoxTommorow.Location = new System.Drawing.Point(460, 12);
+            this.groupBoxTommorow.Name = "groupBoxTommorow";
+            this.groupBoxTommorow.Size = new System.Drawing.Size(561, 386);
+            this.groupBoxTommorow.TabIndex = 5;
+            this.groupBoxTommorow.TabStop = false;
+            this.groupBoxTommorow.Text = "Погода на завтра";
+            // 
+            // webBrowserNow
+            // 
+            this.webBrowserNow.Location = new System.Drawing.Point(6, 34);
+            this.webBrowserNow.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserNow.Name = "webBrowserNow";
+            this.webBrowserNow.ScrollBarsEnabled = false;
+            this.webBrowserNow.Size = new System.Drawing.Size(194, 140);
+            this.webBrowserNow.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 447);
+            this.ClientSize = new System.Drawing.Size(1042, 447);
+            this.Controls.Add(this.groupBoxTommorow);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button_search);
@@ -195,7 +204,6 @@
             this.Name = "Form1";
             this.Text = "Яндекс.Погода";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -207,7 +215,6 @@
 
         private System.Windows.Forms.Button button_search;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelTemperature;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label labelWindDirection;
@@ -219,6 +226,8 @@
         private System.Windows.Forms.Label labelPressureMm;
         private System.Windows.Forms.Label labelWindSpeed;
         private System.Windows.Forms.Label labelNameCity;
+        private System.Windows.Forms.GroupBox groupBoxTommorow;
+        private System.Windows.Forms.WebBrowser webBrowserNow;
     }
 }
 

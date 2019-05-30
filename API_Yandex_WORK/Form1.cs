@@ -22,6 +22,7 @@ namespace API_Yandex_WORK
         public Form1()
         {
             InitializeComponent();
+            
         }
         static double slat = 1488;//52.841058;
         static double slon = 666; //33.196056;
@@ -30,6 +31,7 @@ namespace API_Yandex_WORK
             //Геокодер для определения местоположения
             //double lat = 52.841058; //Широта (в градусах).
             //double lon = 33.196056; //Долгота (в градусах).///
+            groupBoxTommorow.Text = "Погода на завтра:";
             
 
         }
@@ -105,11 +107,21 @@ namespace API_Yandex_WORK
                     //Console.WriteLine($"{result}");
                     //Console.WriteLine(Webstream.ReadToEnd());
                     //pictureBox1.Image
-                    pictureBox1.ImageLocation = "https://cdn.dribbble.com/users/27990/screenshots/1983809/weather_teaser.png";
-                    Console.ReadLine();
+                    string IconNow = fact.CurrentWeather.Icon;
+                    webBrowserNow.Navigate($"https://yastatic.net/weather/i/icons/blueye/color/svg/{IconNow}.svg");
+                    //webBrowser2.Refresh();
+                    
+                    //pictureBox1.ImageLocation = "https://cdn.dribbble.com/users/27990/screenshots/1983809/weather_teaser.png";
+
                 }
             }
             response.Close();
+
+            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -22,6 +22,9 @@ namespace API_Yandex_WORK
         [DataMember(Name = "humidity")]
         public int Humidity { get; set; } //Влажность воздуха(в процентах)
 
+        [DataMember(Name = "icon")]
+        public string Icon { get; set; } //Картинка погоды
+
         [DataMember(Name = "prec_type")]
         public int PrecType { get; set; } //Тип осадков
 
